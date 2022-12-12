@@ -1,0 +1,25 @@
+{
+  "name": "amatory-scores",
+  "version": "1.0.0",
+  "description": "A simple web project to visualize a person's amatory scores, that is, how a person's affection, libido, etc. measures up",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catmonsterZuzu/amatory-scores.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catmonsterZuzu/amatory-scores/issues"
+  },
+  "homepage": "https://github.com/catmonsterZuzu/amatory-scores#readme",
+  "dependencies": {
+    "bulma": "^0.9.4",
+    "chart.js": "^4.0.1",
+    "express": "^4.18.2",
+    "jquery": "^3.6.1"
+  }
+}
