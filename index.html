@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Amatory Scores</title>
-        <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="node_modules/chart.js/dist/chart.umd.js"></script>
-        <script type="text/javascript" src="index.js"></script>
-    </head>
-    <body>
-        <div>
-            <canvas id="myChart"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amatory Scores</title>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css" />
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/chart.js/dist/chart.umd.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <div class="container has-text-centered">
+      <section id="get-started-section" class="section is-align-items-center">
+        <div class="container">
+          <h1 class="title">Welcome friends</h1>
+          <p class="subtitle">Let's get started, shall we?</p>
+          <button id="get-started-button" class="button is-primary is-light">Get Started</button>
         </div>
-
+      </section>
+      <section id="question-0"></section>
+      <!-- <section id="question-1" class="section is-align-items-center" style="display: none">
+        <p class="subtitle">I could develop romantic feelings for a person who acts traditionally feminine</p>
+        <div class="control">
+          <label class="radio">
+            <input type="radio" name="question-1" />
+            Disagree
+          </label>
+          <label class="radio">
+            <input type="radio" name="question-1" />
+            Somewhat Disagree
+          </label>
+          <label class="radio">
+            <input type="radio" name="question-1" />
+            Unsure
+          </label>
+          <label class="radio">
+            <input type="radio" name="question-1" />
+            Somewhat Agree
+          </label>
+          <label class="radio">
+            <input type="radio" name="question-1" />
+            Agree
+          </label>
+        </div>
+      </section> -->
+      <!-- <div>
+            <canvas id="myChart"></canvas>
+        </div> -->
+      <!-- 
         <script>
             const ctx = document.getElementById('myChart');
           
@@ -35,7 +70,8 @@
                 }
               }
             });
-          </script>
-        <!-- <button id="test-button">test</button> -->
-    </body>
+          </script> -->
+      <!-- <button id="test-button">test</button> -->
+    </div>
+  </body>
 </html>

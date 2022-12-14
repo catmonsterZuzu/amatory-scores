@@ -1,10 +1,73 @@
+$questionJson = {
+    "questions":{
+        "1":{
+            "text": "I could develop romantic feelings for a person who acts traditionally feminine",
+            "category": "romantic",
+            "answers": {
+                "1": "Disagree",
+                "2": "Somewhat disagree",
+                "3": "Unsure",
+                "4": "Somewhat Agree",
+                "5": "Agree"
+            }
+        },
+        "2":{},
+        "3":{},
+        "4":{},
+        "5":{},
+        "6":{}
+    }
+};
 
+$(function () {
 
-// $(function () {
+    $('#get-started-button').on('click', function() {
+        $('#get-started-section').hide();
+        showNextSection();
+    });
 
-//     $('#test-button').on('click', function() {
-//         console.log('something');
-//     });
+    function showNextSection() {
+        const currentQuestionNumber = $('section[id^="question-"]').attr('id').replace("question-", "");
+        buildNextQuestion(currentQuestionNumber);
+       //  console.log(currentQuestionNumber);
+       //  $('#question-1').show();
+    }
+
+    function showPreviousSection() {
+
+    }
+
+    function buildNextQuestion(number) {
+        const template = `
+            <section id="question-1" class="section is-align-items-center">
+            <p class="subtitle">I could develop romantic feelings for a person who acts traditionally feminine</p>
+            <div class="control">
+            <label class="radio">
+                <input type="radio" name="question-1" />
+                Disagree
+            </label>
+            <label class="radio">
+                <input type="radio" name="question-1" />
+                Somewhat Disagree
+            </label>
+            <label class="radio">
+                <input type="radio" name="question-1" />
+                Unsure
+            </label>
+            <label class="radio">
+                <input type="radio" name="question-1" />
+                Somewhat Agree
+            </label>
+            <label class="radio">
+                <input type="radio" name="question-1" />
+                Agree
+            </label>
+            </div>
+        </section>
+      `;
+      console.log(`#question-${number}`);
+      $(`#question-${number}`).replaceWith(template);
+    }
 
 
 //     const DATA_COUNT = 7;
@@ -44,4 +107,4 @@
 //       };
 
 
-// });
+});
