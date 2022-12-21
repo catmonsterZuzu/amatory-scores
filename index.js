@@ -42,7 +42,7 @@ let questionsJson = {
         },
         "10": {
             "text": "I feel physically attracted to people that present as traditionally masculine.",
-            "subtext": "physical-m"
+            "category": "physical-m"
         },
         "11":{
             "text": "I feel physically attracted to people that present as traditionally feminine.",
@@ -75,7 +75,107 @@ let questionsJson = {
         "18":{
             "text": "I am physically attracted to a person regardless of their anatomy or genitalia.",
             "category": "physical-nb"
-        },        
+        },
+        "19":{
+            "text": "I prefer to initiate sexual encounters.",
+            "category": "assertiveness"
+        },
+        "20":{
+            "text": "I prefer making decisions in the bedroom.",
+            "category": "assertiveness"
+        },
+        "21":{
+            "text": "I am not afraid to tell my partner(s) what I need or prefer.",
+            "category": "assertiveness"
+        },
+        "22":{
+            "text": "I enjoy feeling powerful in sexual situations.",
+            "category": "assertiveness"
+        },
+        "23":{
+            "text": "I enjoy flirting and teasing.",
+            "category": "assertiveness"
+        },
+        "24":{
+            "text": "I find myself leading in the bedroom more often than following.",
+            "category": "assertiveness"
+        },
+        "25":{
+            "text": "I prefer to have aftercare after sex.",
+            "category": "affection"
+        },
+        "26":{
+            "text": "I prefer to have foreplay before sex.",
+            "category": "affection"
+        },
+        "27":{
+            "text": "I enjoy using sex as a way to connect intimately.",
+            "category": "affection"
+        },
+        "28":{
+            "text": "I enjoy being physically affectionate towards my partner, even when sex is not involved.",
+            "category": "affection"
+        },
+        "29":{
+            "text": "I enjoy being verbally affectionate towards my partner, even when sex is not involved.",
+            "category": "affection"
+        },
+        "30":{
+            "text": "I enjoy performing actions that make my partner feel loved.",
+            "category": "affection"
+        },
+        "31":{
+            "text": "I prefer to masturbate at least once a day.",
+            "category": "libido"
+        },
+        "32":{
+            "text": "I prefer to have sex at least once a day.",
+            "category": "libido"
+        },
+        "33":{
+            "text": "I often find myself thinking about sexual situations, ideas, etc.",
+            "category": "libido"
+        },
+        "34":{
+            "text": "I often find myself wanting more sex than my partner(s).",
+            "category": "libido"
+        },
+        "35":{
+            "text": "I enjoy the sexual aspect of relationships more than the emotional connection.",
+            "category": "libido"
+        },
+        "36":{
+            "text": "I enjoy sex as an outlet for pent up stress.",
+            "category": "libido"
+        },
+        "37":{
+            "text": "I own many sex toys, erotic books/comics, etc.",
+            "category": "experimental"
+        },
+        "38":{
+            "text": "I am comfortable engaging in sexual activities that I am unfamiliar with.",
+            "category": "experimental"
+        },
+        "39":{
+            "text": "Knowing that a sexual act is not generally socially accepted makes it more exciting.",
+            "category": "experimental"
+        },
+        "40":{
+            "text": "Some of my sexual interests may be uncommon or not socially acceptable to some people.",
+            "category": "experimental"
+        },
+        "41":{
+            "text": "I’m more likely than my partner(s) to be bring new experiences into the bedroom.",
+            "category": "experimental"
+        },
+        "42":{
+            "text": "I am always looking for new kinks or ideas to explore in the bedroom.",
+            "category": "experimental"
+        },
+        "43":{
+            "text": "You have reached the end",
+            "subtext": "I hope you enjoyed the quiz"
+        }
     }
 };
 
@@ -86,7 +186,7 @@ let answersJson = {
     "physical-m": 0,
     "physical-f": 0,
     "physical-nb": 0,
-    "assertive": 0,
+    "assertiveness": 0,
     "affection": 0,
     "libido": 0,
     "experimental": 0
@@ -120,11 +220,11 @@ $(function () {
         const newQuestion = questionsJson.questions[newQuestionNumber].text;
         let template = '';
 
-        if (newQuestionNumber === 18) {
+        if (newQuestionNumber === 43) {
             $('#previous-button').hide();
             $('#start-over-button').show();
 
-            // showAmatoryAttributesRadarChart();
+            showAmatoryAttributesRadarChart(newQuestionNumber, currentQuestionNumber);
             showAttractionRadarChart(newQuestionNumber, currentQuestionNumber);
             return;
         }
@@ -142,7 +242,7 @@ $(function () {
 
         } else {
             template = `<div id="question-${newQuestionNumber}" class="container is-align-items-center">
-                <p class="m-4 is-size-3 has-text-weight-semibold">Question ${newQuestionNumber} of 64</p>
+                <p class="m-4 is-size-3 has-text-weight-semibold">Question ${newQuestionNumber} of 42</p>
                 <div class="container is-widescreen">
                     <div class="notification is-link">
                         ${newQuestion}
@@ -171,29 +271,28 @@ $(function () {
 
     function showAmatoryAttributesRadarChart(newQuestionNumber, currentQuestionNumber) {
         const template = `<div id="question-${newQuestionNumber}" class="container is-align-items-center">
-            <p class="title">Your results</p>
             <div style="max-width: 80%; margin: auto;">
                 <canvas id="amatory-chart"></canvas>
             </div>
         </div>`;
 
-        $(`#question-${currentQuestionNumber}`).replaceWith(template);
+        $('#amatory-chart-container').replaceWith(template);
         const ctx = document.getElementById('amatory-chart');
 
-        const assertiveScore    = (answersJson['assertive'] > 0) ? answersJson['assertive'] : 0;
+        const assertiveScore    = (answersJson['assertiveness'] > 0) ? answersJson['assertiveness'] : 0;
         const affectionScore    = (answersJson['affection'] > 0) ? answersJson['affection'] : 0;
         const libidoScore       = (answersJson['libido'] > 0) ? answersJson['libido'] : 0;
         const experimentalScore = (answersJson['experimental'] > 0) ? answersJson['experimental'] : 0;
 
         const data = {
             labels: [
-                'Assertive',
+                'Assertiveness',
                 'Affection',
                 'Libido',
                 'Experimental'
             ],
             datasets: [{
-                label: 'Amatory Scores',
+                label: '',
                 data: [
                     assertiveScore,
                     affectionScore,
@@ -214,6 +313,11 @@ $(function () {
             type: 'radar',
             data: data,
             options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
                 elements: {
                     line: {
                         borderWidth: 3
@@ -257,58 +361,134 @@ $(function () {
         const physicalFScore    = (answersJson['physical-f'] > 0) ? answersJson['physical-f'] : 0;
         const physicalNBScore   = (answersJson['physical-nb'] > 0) ? answersJson['physical-nb'] : 0;
 
+        console.log(physicalMScore);
+
         const data = {
             labels: [
-              'M Romantic',
-              'F Romantic',
-              'NB Romantic',
-              'M Physical',
-              'F Physical',
-              'NB Physical'
+                'Masculine Romantic',
+                'Feminine Romantic',
+                'Non-Binary Romantic',
+                'Masculine Physical',
+                'Feminine Physical',
+                'Non-Binary Physical'
             ],
             datasets: [{
-                label: 'Amatory Scores',
-                data: [
-                    romanticMScore,
-                    romanticFScore,
-                    romanticNBScore,
-                    physicalMScore,
-                    physicalFScore,
-                    physicalNBScore
-                ],
-                fill: true,
-                backgroundColor: 'rgba(240, 186, 255, 0.2)',
-                borderColor: 'rgb(236, 166, 255)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgb(255, 99, 132)'
-            }]
-          };
-          
-        new Chart(ctx, {
-            type: 'radar',
+            label: '',
+            data: [
+                romanticMScore,
+                romanticFScore,
+                romanticNBScore,
+                physicalMScore,
+                physicalFScore,
+                physicalNBScore
+            ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 205, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)'
+            ],
+            borderWidth: 1
+          }]
+        };
+
+
+
+        // const data = {
+        //     labels: [
+        //       'M Romantic',
+        //       'F Romantic',
+        //       'NB Romantic',
+        //       'M Physical',
+        //       'F Physical',
+        //       'NB Physical'
+        //     ],
+        //     datasets: [{
+        //         label: 'Amatory Scores',
+        //         data: [
+        //             romanticMScore,
+        //             romanticFScore,
+        //             romanticNBScore,
+        //             physicalMScore,
+        //             physicalFScore,
+        //             physicalNBScore
+        //         ],
+        //         fill: true,
+        //         backgroundColor: 'rgba(240, 186, 255, 0.2)',
+        //         borderColor: 'rgb(236, 166, 255)',
+        //         pointBackgroundColor: 'rgb(255, 99, 132)',
+        //         pointBorderColor: '#fff',
+        //         pointHoverBackgroundColor: '#fff',
+        //         pointHoverBorderColor: 'rgb(255, 99, 132)'
+        //     }]
+        //   };
+
+
+          new Chart(ctx, {
+            type: 'bar',
             data: data,
             options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
                 elements: {
                     line: {
                         borderWidth: 3
                     }
                 },
                 scales: {
-                    r: {
-                        angleLines: {
-                            display: true
+                    y: {
+                        grid: {
+                            drawOnChartArea: false
                         },
                         ticks: {
                             display: false
-                        },
-                        suggestedMin: 0,
-                        suggestedMax: 6
+                        }
+                    },
+                    x: {
+                        grid: {
+                            drawOnChartArea: false
+                        }
                     }
                 }
             }
         });
+          
+        // new Chart(ctx, {
+        //     type: 'radar',
+        //     data: data,
+        //     options: {
+        //         elements: {
+        //             line: {
+        //                 borderWidth: 3
+        //             }
+        //         },
+        //         scales: {
+        //             r: {
+        //                 angleLines: {
+        //                     display: true
+        //                 },
+        //                 ticks: {
+        //                     display: false
+        //                 },
+        //                 suggestedMin: 0,
+        //                 suggestedMax: 6
+        //             }
+        //         }
+        //     }
+        // });
     }
 
 });
