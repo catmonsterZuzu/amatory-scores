@@ -249,11 +249,11 @@ $(function () {
                     </div>
                 </div>
                 <section>
-                    <button id="question-${newQuestionNumber}-5" data-answer="2" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Agree</button>
-                    <button id="question-${newQuestionNumber}-4" data-answer="1" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Somewhat Agree</button>
-                    <button id="question-${newQuestionNumber}-3" data-answer="0" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Unsure</button>
-                    <button id="question-${newQuestionNumber}-2" data-answer="-1" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Somewhat Disagree</button>
-                    <button id="question-${newQuestionNumber}-1" data-answer="-2" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Disagree</button>
+                    <button id="question-${newQuestionNumber}-5" data-answer="4" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Agree</button>
+                    <button id="question-${newQuestionNumber}-4" data-answer="3" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Somewhat Agree</button>
+                    <button id="question-${newQuestionNumber}-3" data-answer="2" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Unsure</button>
+                    <button id="question-${newQuestionNumber}-2" data-answer="1" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Somewhat Disagree</button>
+                    <button id="question-${newQuestionNumber}-1" data-answer="0" class="question-button button is-link is-light is-rounded is-medium is-fullwidth mt-3">Disagree</button>
                 </section>
             </div>`;
 
@@ -279,10 +279,10 @@ $(function () {
         $('#amatory-chart-container').replaceWith(template);
         const ctx = document.getElementById('amatory-chart');
 
-        const assertiveScore    = (answersJson['assertiveness'] > 0) ? answersJson['assertiveness'] : 0;
-        const affectionScore    = (answersJson['affection'] > 0) ? answersJson['affection'] : 0;
-        const libidoScore       = (answersJson['libido'] > 0) ? answersJson['libido'] : 0;
-        const experimentalScore = (answersJson['experimental'] > 0) ? answersJson['experimental'] : 0;
+        const assertiveScore    = answersJson['assertiveness'];
+        const affectionScore    = answersJson['affection'];
+        const libidoScore       = answersJson['libido'];
+        const experimentalScore = answersJson['experimental'];
 
         const data = {
             labels: [
@@ -332,7 +332,7 @@ $(function () {
                             display: false
                         },
                         suggestedMin: 0,
-                        suggestedMax: 12
+                        suggestedMax: 24
                     }
                 }
             }
@@ -354,12 +354,12 @@ $(function () {
 
         // IF less than 0, then we set them at 0 since we're doing a radar chart. Perhaps there's a way to better display negative stats later?
         // For romantic and physical attraction, we give 2x the weight so that it'll fit the chart properly
-        const romanticMScore    = (answersJson['romantic-m'] > 0) ? answersJson['romantic-m'] : 0;
-        const romanticFScore    = (answersJson['romantic-f'] > 0) ? answersJson['romantic-f'] : 0;
-        const romanticNBScore   = (answersJson['romantic-nb'] > 0) ? answersJson['romantic-nb'] : 0;
-        const physicalMScore    = (answersJson['physical-m'] > 0) ? answersJson['physical-m'] : 0;
-        const physicalFScore    = (answersJson['physical-f'] > 0) ? answersJson['physical-f'] : 0;
-        const physicalNBScore   = (answersJson['physical-nb'] > 0) ? answersJson['physical-nb'] : 0;
+        const romanticMScore    = answersJson['romantic-m'];
+        const romanticFScore    = answersJson['romantic-f'];
+        const romanticNBScore   = answersJson['romantic-nb'];
+        const physicalMScore    = answersJson['physical-m'];
+        const physicalFScore    = answersJson['physical-f'];
+        const physicalNBScore   = answersJson['physical-nb'];
 
         console.log(physicalMScore);
 
